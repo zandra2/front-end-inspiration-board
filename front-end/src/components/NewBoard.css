@@ -1,0 +1,12 @@
+h2 {
+  text-transform: uppercase;
+}
+
+input.hide-show {
+  display: none;
+}
+
+.cardtitle {
+  margin-left: 40px;
+  margin-right: 40px;
+}

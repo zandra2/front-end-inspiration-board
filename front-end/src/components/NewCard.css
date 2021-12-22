@@ -1,0 +1,13 @@
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+.newcard {
+  margin-left: 40px;
+  margin-right: 40px;
+}
