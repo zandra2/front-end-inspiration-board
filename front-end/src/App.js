@@ -25,6 +25,8 @@ function App() {
             <CardNote />
             <CardNote />
             <CardNote />
+            <CardNote />
+            <CardNote />
           </div>
         </form>
       </main>
