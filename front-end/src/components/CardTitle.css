@@ -2,7 +2,13 @@ h2 {
   text-transform: uppercase;
 }
 
-.newboard {
+.card-title {
+  margin: 80px 40px 60px 40px;
+  /* margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 50px; */
+}
+.new-board {
   margin-left: 40px;
   margin-right: 40px;
 }

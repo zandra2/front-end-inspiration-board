@@ -5,8 +5,8 @@ import "./Board.css";
 const Board = () => {
   return (
     <div className="board">
-      <h2>board</h2>
-      <select name="board-title">
+      <h2 className="board-title">board</h2>
+      <select className="field-box select-box" name="board-title">
         <option value="">Select Title</option>
         {/* how to reflect more board title values when user add more titles */}
         {/* <option value=""></option> */}

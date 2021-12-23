@@ -4,7 +4,7 @@ import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
 import CardTitle from "./components/CardTitle";
 import CardBoard from "./components/CardBoard";
-// import CardNote from "./components/CardNote";
+import CardNote from "./components/CardNote";
 
 function App() {
   return (
@@ -14,12 +14,14 @@ function App() {
       </header>
       <main>
         <form>
-          <Board />
-          <NewBoard />
-          <NewCard />
+          <div className="top-container">
+            <Board />
+            <NewBoard />
+            <NewCard />
+          </div>
           <CardTitle />
-          <CardBoard />
-          {/* <CardNote /> */}
+          <CardBoard className="bottom-container" />
+          <CardNote />
         </form>
       </main>
     </div>
