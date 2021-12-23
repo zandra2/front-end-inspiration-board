@@ -3,7 +3,7 @@ import Board from "./components/Board";
 import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
 import CardTitle from "./components/CardTitle";
-import CardBoard from "./components/CardBoard";
+// import CardBoard from "./components/CardBoard";
 import CardNote from "./components/CardNote";
 
 function App() {
@@ -20,8 +20,12 @@ function App() {
             <NewCard />
           </div>
           <CardTitle />
-          <CardBoard className="bottom-container" />
-          <CardNote />
+          <div className="bottom-container">
+            <CardNote />
+            <CardNote />
+            <CardNote />
+            <CardNote />
+          </div>
         </form>
       </main>
     </div>
