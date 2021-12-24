@@ -19,6 +19,7 @@ function App() {
   // setting states for board's author
   const [owner, setOwner] = useState(`Owner's Name`);
   // setting states for main board
+  // const [board, setBoard] = useState(handleAddTitle(handleAddTitle()));
   const [board, setBoard] = useState([]);
 
   //set default object to be empty
