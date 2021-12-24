@@ -19,19 +19,16 @@
   display: flex;
   width: 1330px;
   min-height: 350px;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
 }
 
-/* doesn't really work why*/
-.bottom-container {
+/* .bottom-container {
   display: flex;
   width: 1330px;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   margin-left: 40px;
+} */
 
-  /* background-color: white; */
-  /* height: 200px; */
-}
+/* .bottom-container {
+} */

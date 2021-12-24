@@ -14,20 +14,3 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
 }
-
-/* board affect this component css */
-/* .submit-button {
-  background-color: #db1111;
-  border: #db1111;
-  color: white;
-  text-align: center;
-  padding: 20px 44px;
-  font-size: 24px;
-  box-shadow: none;
-} */
-
-/* .field-box {
-  width: 381px;
-  height: 69px;
-  font-size: 24px;
-} */

@@ -5,16 +5,20 @@
   margin-bottom: 50px;
   color: white;
   background: #db1111;
-  /* needs inline-block to get the cards to behhaved likes inline */
+  /* needs inline-block to get the cards to behaved likes inline */
   display: inline-block;
   /* display: none; */
 }
 
-/* don't need this because App.css handles this */
-.card-container {
+/* .card-container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+} */
+
+.card-container {
+  margin-right: 10px;
+  margin-left: 40px;
 }
 
 .card-input {
@@ -40,10 +44,8 @@ p {
   justify-content: space-around;
 }
 
-/* .heart {
-  display: inline;
-} */
-
-/* .card-form {
-  display: inline;
-} */
+.card-para {
+  /* setting width size somehow affects right margin. */
+  /* width: 260px; */
+  height: 250px;
+}

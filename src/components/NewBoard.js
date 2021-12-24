@@ -7,8 +7,18 @@ const NewBoard = () => {
     <div className="new-board">
       <h2>create a new board</h2>
       {/* do I need a label tag for input tag if I don't need it? */}
-      <input className="field-box" type="text" placeholder="Title" />
-      <input className="field-box" type="text" placeholder="Owner's Name" />
+      <input
+        className="field-box"
+        type="text"
+        placeholder="Title"
+        maxlength="100"
+      />
+      <input
+        className="field-box"
+        type="text"
+        placeholder="Owner's Name"
+        maslength="100"
+      />
       <div className="board-button-container">
         <input className="submit-button" type="submit" value="Submit" />
         {/* what is the difference between button vs submit */}
