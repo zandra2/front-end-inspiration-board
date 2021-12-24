@@ -7,24 +7,77 @@ import CardTitle from "./components/CardTitle";
 import CardNote from "./components/CardNote";
 import { useState } from "react";
 
-// const [{"board_id":167,"owner":"Ada L.","title":"Pick-me-up Quotes"},{"board_id":168,"owner":"adfa","title":"fadf"},{"board_id":169,"owner":"fdafdffadfa","title":"fafdaf"},{"board_id":170,"owner":"sfbs","title":"bgbsfbsbs"},{"board_id":171,"owner":"sbfdf","title":"bgsbgs"},{"board_id":172,"owner":"ynhdt","title":"fbsbfbg"},{"board_id":173,"owner":"nhtdh","title":"thtd"},{"board_id":174,"owner":"mary tian","title":"test"}]
+const boardData = [{ board_id: "", owner: "", title: "" }];
 
-// board {"title": "title",
-//       "ownerName": "text",
-//       cardList: [
-//         "cardID": 1,
-//         message: "text"
-//         numofLikes: "num"]
+const cardData = {
+  card: [{ board_id: "", card_id: "", likes_count: "", message: "" }],
+};
 
 function App() {
   // setting states for board's title
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState("Title");
   // setting states for board's author
-  const [owner, setOwner] = useState(null);
+  const [owner, setOwner] = useState(`Owner's Name`);
+  // setting states for main board
+  const [board, setBoard] = useState([]);
+
+  //set default object to be empty
+  // const setDefaultBoardState = () => {
+  //   return {
+  //     board_id: "",
+  //     title: "",
+  //     owner: "",
+  //   };
+  // };
+
+  //set default object to be empty
+  const setDefaultBoardState = () => {
+    return boardData;
+  };
+
+  // performs validation of the field data entered by the user fields is an object with id, title, and owner keys.
+  // trim() method removes whitespace from both ends of a string and returns a new string, without modifying the original string
+  const validateBoardInput = (fields) => {
+    const result = {};
+    result.board_id = fields.board_id;
+    result.title = fields.title.trim();
+    result.owner = fields.owner.trim();
+
+    if (result.title.length === 0 || result.owner.length === 0) {
+      return null;
+    }
+
+    return result;
+  };
 
   // add movie even handler
   const addTitle = (title) => {
     setTitle(title);
+  };
+
+  // add owner's name
+  const addOwner = (owner) => {
+    setTitle(owner);
+  };
+
+  //add title to board list
+  const addBoard = (title, owner) => {
+    setBoard(board);
+  };
+
+  // create a callbackfunc to update state when title is ready
+  const handleAddTitle = (title) => {
+    setTitle(title);
+  };
+
+  // create a callbackfunc to update state when name is ready
+  const handleAddOwner = (owner) => {
+    setOwner(owner);
+  };
+
+  // create a callbackfunc to update state when board is ready?
+  const handleAddBoard = (title, owner) => {
+    setOwner(board);
   };
 
   return (
@@ -37,7 +90,7 @@ function App() {
           <div className="top-container">
             {/* does board needs a form tag to send http request? */}
             <Board />
-            <NewBoard />
+            <NewBoard onAddTitle={handleAddTitle} onAddOwner={handleAddOwner} />
             <NewCard />
           </div>
           <CardTitle />
