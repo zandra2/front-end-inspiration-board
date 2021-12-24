@@ -3,7 +3,7 @@ import "./CardNote.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const CardNote = () => {
+const CardNote = (props) => {
   const [likesCount, setLikesCount] = useState(0);
   const increaseLikes = () => {
     setLikesCount(likesCount + 1);
@@ -32,7 +32,8 @@ const CardNote = () => {
           />
         </form>
         <form className="card-form">
-          <input className="card-input" type="text" value="Delete" />
+          <input className="card-input" type="text" value="Delete" onClick= {() => props.deleteCard(props.id)}  />
+          
           {/* <button>+1</button> */}
         </form>
       </div>
