@@ -1,85 +1,90 @@
 import "./App.css";
-import Board from "./components/Board";
+import BoardSelect from "./components/BoardSelect";
 import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
 import CardTitle from "./components/CardTitle";
-// import CardBoard from "./components/CardBoard";
+import CardBoard from "./components/CardBoard";
 import CardNote from "./components/CardNote";
-import { useState } from "react";
-
-const boardData = [{ board_id: "", owner: "", title: "" }];
-
-const cardData = {
-  card: [{ board_id: "", card_id: "", likes_count: "", message: "" }],
-};
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
-  // setting states for board's title
-  const [title, setTitle] = useState("Title");
-  // setting states for board's author
-  const [owner, setOwner] = useState(`Owner's Name`);
-  // setting states for main board
-  // const [board, setBoard] = useState(handleAddTitle(handleAddTitle()));
-  const [board, setBoard] = useState([]);
+  // TODO:  rename data to boards (a list of all board objects...)
+  // TODO:  Save for later - create a setBoards function that will update this list.  That data will come from your backend.
+  const [boards, setBoards] = useState([
+    {
+      board_id: "1",
+      owner: "Zandra",
+      title: "Test Board 1",
+      cards: [
+        {
+          card_id: "1",
+          likes_count: "0",
+          message: "Here's my first card",
+          board_id: "1",
+        },
+        {
+          card_id: "2",
+          likes_count: "0",
+          message: "Here's my second card",
+          board_id: "1",
+        },
+      ],
+    },
+    {
+      board_id: "2",
+      owner: "Mike",
+      title: "Test Board 2",
+      cards: [
+        {
+          card_id: "1",
+          likes_count: "0",
+          message: "Here's my first card",
+          board_id: "2",
+        },
+        {
+          card_id: "2",
+          likes_count: "0",
+          message: "Here's my second card",
+          board_id: "2",
+        },
+      ],
+    },
+  ]);
 
-  //set default object to be empty
-  // const setDefaultBoardState = () => {
-  //   return {
-  //     board_id: "",
-  //     title: "",
-  //     owner: "",
-  //   };
-  // };
+  // TODO: pass setBoard as a prop down to boardSelect.js and fire when the selecct dropdown list changes
+  // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
+  const [board, setBoard] = useState({
+    board_id: "1",
+    owner: "Zandra",
+    title: "Test Board 1",
+    cards: [
+      {
+        card_id: "1",
+        likes_count: "0",
+        message: "Here's my first card",
+        board_id: "1",
+      },
+      {
+        card_id: "2",
+        likes_count: "0",
+        message: "Here's my second card",
+        board_id: "1",
+      },
+    ],
+  }); // a single board object
 
-  //set default object to be empty
-  const setDefaultBoardState = () => {
-    return boardData;
-  };
-
-  // performs validation of the field data entered by the user fields is an object with id, title, and owner keys.
-  // trim() method removes whitespace from both ends of a string and returns a new string, without modifying the original string
-  const validateBoardInput = (fields) => {
-    const result = {};
-    result.board_id = fields.board_id;
-    result.title = fields.title.trim();
-    result.owner = fields.owner.trim();
-
-    if (result.title.length === 0 || result.owner.length === 0) {
-      return null;
-    }
-
-    return result;
-  };
-
-  // add movie even handler
-  const addTitle = (title) => {
-    setTitle(title);
-  };
-
-  // add owner's name
-  const addOwner = (owner) => {
-    setTitle(owner);
-  };
-
-  //add title to board list
-  const addBoard = (title, owner) => {
-    setBoard(board);
-  };
-
-  // create a callbackfunc to update state when title is ready
-  const handleAddTitle = (title) => {
-    setTitle(title);
-  };
-
-  // create a callbackfunc to update state when name is ready
-  const handleAddOwner = (owner) => {
-    setOwner(owner);
-  };
-
-  // create a callbackfunc to update state when board is ready?
-  const handleAddBoard = (title, owner) => {
-    setOwner(board);
-  };
+  // this runs when react attempts to render this component
+  // useEffect(() => {
+  //   axios
+  //     .get("https://inspiration-board-api.herokuapp.com/")
+  //     .then((data) => {
+  //       setBoards(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("opps!", err);
+  //     });
+  // }, []);
 
   return (
     <div className="App">
@@ -87,18 +92,21 @@ function App() {
         <h1>Symaviza's Inspiration Board</h1>
       </header>
       <main>
-        <form>
-          <div className="top-container">
-            {/* does board needs a form tag to send http request? */}
-            <Board />
-            <NewBoard onAddTitle={handleAddTitle} onAddOwner={handleAddOwner} />
+        <BoardSelect boards={boards} /> {/** rename to boardSelect.js ??? */}
+        <CardBoard board={board} />
+        <NewBoard />
+        {/* <form>
+          <div className="top-container"> */}
+        {/* does board needs a form tag to send http request? */}
+        {/* <Board />
+            <NewBoard />
             <NewCard />
           </div>
           <CardTitle />
           <div className="bottom-container">
             <CardNote />
-          </div>
-        </form>
+          </div> */}
+        {/* </form> */}
       </main>
     </div>
   );

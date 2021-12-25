@@ -3,7 +3,9 @@ import "./CardNote.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const CardNote = () => {
+const CardNote = (props) => {
+  const { card } = props;
+
   const [likesCount, setLikesCount] = useState(0);
   const increaseLikes = () => {
     setLikesCount(likesCount + 1);
@@ -12,10 +14,7 @@ const CardNote = () => {
   return (
     <section className="card-note card-container">
       <div className="card-para">
-        <p>
-          Test hrerj ejfi ejriejreijre irjeirjeirj eir jeirje irjeirje irjerij
-          xx
-        </p>
+        <p> {card.message}</p>
       </div>
       <div className="card-footer">
         <div className="heart">
