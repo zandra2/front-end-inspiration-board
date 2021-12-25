@@ -1,5 +1,5 @@
 import React from "react";
-import "./Board.css";
+import "./BoardSelect.css";
 // import PropTypes from "prop-types";
 
 // destructuring can looking: const Board = (props) => { const { boards } = props; or const Board = ({ boards, color }). Do 2nd destructoring when there's more than one props are being pass down but otherwise this all depends on how the team want to do it.
