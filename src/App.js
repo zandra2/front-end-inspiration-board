@@ -13,71 +13,53 @@ function App() {
   // TODO:  Save for later - create a setBoards function that will update this list.  That data will come from your backend.
   const [boards, setBoards] = useState([
     {
-      board_id: "1",
+      board_id: 1,
       owner: "Zandra",
-      title: "Test Board 1",
+      title: "Test Board Z",
       cards: [
         {
-          card_id: "1",
-          likes_count: "0",
-          message: "Here's my first card",
-          board_id: "1",
+          card_id: 1,
+          likes_count: 0,
+          message: "Z Here's my first card",
+          board_id: 1,
         },
         {
-          card_id: "2",
-          likes_count: "0",
-          message: "Here's my second card",
-          board_id: "1",
+          card_id: 2,
+          likes_count: 0,
+          message: "Z Here's my second card",
+          board_id: 1,
         },
       ],
     },
     {
-      board_id: "2",
+      board_id: 2,
       owner: "Mike",
-      title: "Test Board 2",
+      title: "Test Board M",
       cards: [
         {
-          card_id: "1",
-          likes_count: "0",
-          message: "Here's my first card",
-          board_id: "2",
+          card_id: 1,
+          likes_count: 0,
+          message: "M Here's my first card",
+          board_id: 2,
         },
         {
-          card_id: "2",
-          likes_count: "0",
-          message: "Here's my second card",
-          board_id: "2",
+          card_id: 2,
+          likes_count: 0,
+          message: "M Here's my second card",
+          board_id: 2,
         },
       ],
     },
   ]);
 
-  // TODO: pass setBoard as a prop down to boardSelect.js and fire when the selecct dropdown list changes
+  // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
-  const [board, setBoard] = useState({
-    board_id: "1",
-    owner: "Zandra",
-    title: "Test Board 1",
-    cards: [
-      {
-        card_id: "1",
-        likes_count: "0",
-        message: "Here's my first card",
-        board_id: "1",
-      },
-      {
-        card_id: "2",
-        likes_count: "0",
-        message: "Here's my second card",
-        board_id: "1",
-      },
-    ],
-  }); // a single board object
+  const [boardId, setBoardId] = useState(1); // the index of the current board in the boards array
 
   // this runs when react attempts to render this component
   // useEffect(() => {
   //   axios
-  //     .get("https://inspiration-board-api.herokuapp.com/")
+  //     .get("https://inspiration-board-api.herokuapp.com/boards")
   //     .then((data) => {
   //       setBoards(data);
   //     })
@@ -86,15 +68,50 @@ function App() {
   //     });
   // }, []);
 
+  // find the board whose ID matches boardId
+  const board = boards.filter((b) => b.board_id === boardId)[0];
+  let maxBoardId = 0;
+  for (let i = 0; i < boards.length; i++) {
+    if (boards[i].board_id > maxBoardId) {
+      maxBoardId = boards[i].board_id;
+    }
+  }
+
+  function createBoard(title, owner) {
+    // TODO: Call API to create new board. This API will need to return
+    // the ID of the new board. Do not use useEffect here because there is
+    // no effect yet. The state won't change until AFTER we call setBoards
+    // below. Alternate solution: do this here AND have a useEffect which
+    // calls the back end. There are some advantages and disadvantages to
+    // both.
+
+    const newBoard = {
+      // TODO: use new ID from API here rather than this hack.
+      board_id: ++maxBoardId,
+      owner: owner,
+      title: title,
+      cards: [],
+    };
+    setBoards((boards) => [...boards, newBoard]);
+    setBoardId(newBoard.board_id);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Symaviza's Inspiration Board</h1>
+        <h1>Symaveza's Inspiration Board</h1>
       </header>
       <main>
-        <BoardSelect boards={boards} /> {/** rename to boardSelect.js ??? */}
-        <CardBoard board={board} />
-        <NewBoard />
+        <div className="top-container">
+          {/* Do I need a form tag here to wrap BoardSelect, NewBoard and NewCard? */}
+          {/** rename to boardSelect.js ??? */}
+          <BoardSelect boards={boards} onBoardChanged={setBoardId} />
+          <NewBoard onNewBoard={createBoard} />
+          <NewCard />
+        </div>
+        <div className="bottom-container">
+          <CardBoard board={board} />
+        </div>
         {/* <form>
           <div className="top-container"> */}
         {/* does board needs a form tag to send http request? */}

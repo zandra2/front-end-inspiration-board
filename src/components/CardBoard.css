@@ -1,9 +1,6 @@
-/* somehow this is not working */
-/* .card-board {
-  background-color: white; */
-/* background-color: rgb(255, 255, 255, 0.1); */
-/* height: 320px; */
-/* width: 1330px;
-  margin-left: 40px;
-  margin-right: 40px;
-} */
+.card-board {
+  margin: 80px 40px 60px 40px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+}

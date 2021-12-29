@@ -7,10 +7,21 @@ h2 {
   text-transform: uppercase;
 }
 
-.new-card {
+/* .new-card {
   margin-left: 40px;
   margin-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+} */
+
+.new-card {
+  margin-left: 40px;
+}
+.new-card h2 {
+  margin-bottom: 42px;
+}
+
+.new-card .field-box {
+  margin-bottom: 117px;
 }

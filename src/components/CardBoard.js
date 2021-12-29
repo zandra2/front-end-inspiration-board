@@ -8,9 +8,9 @@ const CardBoard = (props) => {
 
   return (
     <div>
-      <div className="card-board">{board.title}</div>
+      <div className="card-board">Card for {board.title}</div>
       {board.cards.map((card) => {
-        return <CardNote card={card} />;
+        return <CardNote key={card.card_id} card={card} />;
       })}
     </div>
   );

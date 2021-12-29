@@ -6,6 +6,7 @@ import "./NewBoard.css";
 const NewBoard = (props) => {
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("");
+  const { onNewBoard } = props;
 
   // addBoard should call useEffect(() => axios.post('api/post/boards'))
   // useEffect(() => {
@@ -19,15 +20,24 @@ const NewBoard = (props) => {
 
   // validateTitle and validOwner function
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // step1 validate title and owner
     // step2 call axios.post
-    console.log("Submit title and owner inside of axios to the backend!!!");
+    // console.log("Submit title and owner inside of axios to the backend!!!");
+
+    // Consider making the new board here and passing that to the callback?
+    onNewBoard(title, owner);
+
+    // After creating a new board, reset the state of this control so that
+    // the user can add another without manually deleting the previous stuff.
+    setTitle("");
+    setOwner("");
   };
 
+  //event handler-->callback
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
-    // run something else...
   };
 
   return (
@@ -36,39 +46,38 @@ const NewBoard = (props) => {
       <h2>create a new board</h2>
       {/* do I need a label tag for input tag if I don't need it? */}
       <input
-        // event handler
-        // onChange={(e) => setTitle(e.target.value)}
         onChange={handleTitleChange}
         name="title"
-        // where state is being referenced
+        defaultValue={""}
         value={title}
         className="field-box"
         type="text"
         placeholder="Title"
-        maxlength="100"
+        maxLength="100"
       />
       <input
         onChange={(e) => setOwner(e.target.value)}
         value={owner}
+        defaultValue={""}
         name="owner"
         className="field-box"
         type="text"
         placeholder="Owner's Name"
-        maslength="100"
+        maxLength="100"
       />
       <div className="board-button-container">
         <button
           className="submit-button"
           type="submit"
-          value="Submit"
-          onClick={handleSubmit}
+          value=""
+          // onClick={handleSubmit}
         >
           Submit
         </button>
         {/* what is the difference between button vs submit */}
         {/* should I use type="reset" for the Hide button instead of submit? */}
-        {/* <input className="submit-button" type="submit" value="Hide" /> */}
-        {/* <input className="hide-show" type="show" value="Show Board" /> */}
+        <input className="submit-button" type="submit" value="Hide" />
+        <input className="hide-show" type="show" value="Show Board" />
       </div>
     </form>
   );
