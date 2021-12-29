@@ -3,18 +3,23 @@ import "./CardNote.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+// Using this variable to mock data from the back-end (replace with API response)
+
+// for cardInfo.map
+
+
 const CardNote = (props) => {
-  const [likesCount, setLikesCount] = useState(0);
+  // likes count is coming from prompt and it can be tracked with UseState instead
+  const [likesCount, setLikesCount] = useState(props.likesCount);
   const increaseLikes = () => {
     setLikesCount(likesCount + 1);
   };
-
+  
   return (
     <section className="card-note card-container">
       <div className="card-para">
         <p>
-          Test hrerj ejfi ejriejreijre irjeirjeirj eir jeirje irjeirje irjerij
-          xx
+          {props.message}
         </p>
       </div>
       <div className="card-footer">
@@ -28,14 +33,10 @@ const CardNote = (props) => {
             onClick={increaseLikes}
             className="card-input"
             type="text"
-            value="+1"
+            defaultValue="+1"
           />
         </form>
-        <form className="card-form">
-          <input className="card-input" type="text" value="Delete" onClick= {() => props.deleteCard(props.id)}  />
-          
-          {/* <button>+1</button> */}
-        </form>
+          <button onClick={() => props.deleteCard(props.cardId)}>Delete</button>
       </div>
     </section>
   );

@@ -5,13 +5,15 @@ import NewCard from "./components/NewCard";
 import CardTitle from "./components/CardTitle";
 // import CardBoard from "./components/CardBoard";
 import CardNote from "./components/CardNote";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const boardData = [{ board_id: "", owner: "", title: "" }];
 
-const cardData = {
-  card: [{ board_id: "", card_id: "", likes_count: "", message: "" }],
-};
+// const boardData = [{ board_id: "", owner: "", title: "" }];
+
+// const cardData = {
+//   card: [{ board_id: "", card_id: "", likesCount: "", message: "" }],
+// };
+
 
 function App() {
   // setting states for board's title
@@ -21,6 +23,15 @@ function App() {
   // setting states for main board
   // const [board, setBoard] = useState(handleAddTitle(handleAddTitle()));
   const [board, setBoard] = useState([]);
+  const [cardInfo, setCardInfo] = useState([{cardId: 1, message: 'Good Job', likesCount:2}]);
+  
+
+  
+  const [likesCount, setLikesCount] = useState(0);
+  
+    useEffect(() =>{
+    },[likesCount])
+  
 
   //set default object to be empty
   // const setDefaultBoardState = () => {
@@ -32,9 +43,9 @@ function App() {
   // };
 
   //set default object to be empty
-  const setDefaultBoardState = () => {
-    return boardData;
-  };
+  // const setDefaultBoardState = () => {
+  //   return boardData;
+  // };
 
   // performs validation of the field data entered by the user fields is an object with id, title, and owner keys.
   // trim() method removes whitespace from both ends of a string and returns a new string, without modifying the original string
@@ -81,13 +92,30 @@ function App() {
     setOwner(board);
   };
 
+
+
+  function deleteCard (id) {
+    setCardInfo(cardInfo.filter(card => card.cardId !== id));
+  }
+
+  
+  const cards = cardInfo.map((card, i) => {
+    return (<CardNote 
+    key={i}
+    cardId={card.cardId}
+    message={card.message}
+    likesCount={card.likesCount}
+    deleteCard={deleteCard}
+    />)
+  });
+
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Symaviza's Inspiration Board</h1>
       </header>
       <main>
-        <form>
           <div className="top-container">
             {/* does board needs a form tag to send http request? */}
             <Board />
@@ -96,9 +124,8 @@ function App() {
           </div>
           <CardTitle />
           <div className="bottom-container">
-            <CardNote />
+            {cards} 
           </div>
-        </form>
       </main>
     </div>
   );
