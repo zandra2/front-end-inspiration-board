@@ -48,17 +48,14 @@ const NewBoard = (props) => {
       <input
         onChange={handleTitleChange}
         name="title"
-        defaultValue={""}
         value={title}
         className="field-box"
         type="text"
         placeholder="Title"
-        maxLength="100"
       />
       <input
         onChange={(e) => setOwner(e.target.value)}
         value={owner}
-        defaultValue={""}
         name="owner"
         className="field-box"
         type="text"
@@ -69,7 +66,6 @@ const NewBoard = (props) => {
         <button
           className="submit-button"
           type="submit"
-          value=""
           // onClick={handleSubmit}
         >
           Submit
@@ -77,7 +73,7 @@ const NewBoard = (props) => {
         {/* what is the difference between button vs submit */}
         {/* should I use type="reset" for the Hide button instead of submit? */}
         <input className="submit-button" type="submit" value="Hide" />
-        <input className="hide-show" type="show" value="Show Board" />
+        {/** <input className="hide-show" type="show" value="Show Board" /> */}
       </div>
     </form>
   );

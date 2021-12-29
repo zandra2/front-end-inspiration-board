@@ -24,6 +24,7 @@ const BoardSelect = (props) => {
         className="field-box select-box"
         name="board-title"
         onChange={onChangedEventHandler}
+        value={props.currentTitleSelected}
       >
         {/* default setting for sector */}
         {/* <option value="">Select Title</option>

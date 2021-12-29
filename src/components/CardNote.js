@@ -21,8 +21,8 @@ const CardNote = (props) => {
           <span>{likesCount}</span>
           <span>🖤</span>
         </div>
+        {/**
         <form className="card-form">
-          {/* need to add onClick={} to update counts */}
           <input
             onClick={increaseLikes}
             className="card-input"
@@ -32,8 +32,8 @@ const CardNote = (props) => {
         </form>
         <form className="card-form">
           <input className="card-input" type="text" value="Delete" />
-          {/* <button>+1</button> */}
         </form>
+        */}
       </div>
     </section>
   );

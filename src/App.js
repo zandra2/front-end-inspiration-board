@@ -77,14 +77,13 @@ function App() {
     }
   }
 
+  // TODO: Call API to create new board. This API will need to return
+  // the ID of the new board. Do not use useEffect here because there is
+  // no effect yet. The state won't change until AFTER we call setBoards
+  // below. Alternate solution: do this here AND have a useEffect which
+  // calls the back end. There are some advantages and disadvantages to
+  // both.
   function createBoard(title, owner) {
-    // TODO: Call API to create new board. This API will need to return
-    // the ID of the new board. Do not use useEffect here because there is
-    // no effect yet. The state won't change until AFTER we call setBoards
-    // below. Alternate solution: do this here AND have a useEffect which
-    // calls the back end. There are some advantages and disadvantages to
-    // both.
-
     const newBoard = {
       // TODO: use new ID from API here rather than this hack.
       board_id: ++maxBoardId,
@@ -96,6 +95,40 @@ function App() {
     setBoardId(newBoard.board_id);
   }
 
+  //********Adding new card to the current board *******
+  const createCard = (message) => {
+    const newCard = {
+      card_id: 0, // TODO: need to generate a card ID
+      message: message,
+      likes_count: 0,
+      board_id: boardId,
+    };
+
+    setBoards((boards) => {
+      const newBoards = [];
+
+      for (let i = 0; i < boards.length; i++) {
+        const board = boards[i];
+        // is the current board the active one?
+        if (board.board_id === boardId) {
+          // If this is the board we're adding the new card to, then carefully
+          // copy that board into a new object so we can add the new card
+          // without modifying existing state.
+          const newBoard = { ...board };
+          newBoard.cards = [...board.cards, newCard];
+          newBoards.push(newBoard);
+        } else {
+          // This is NOT the board we're looking for so just copy it into the new
+          // boards array with no changes.
+          newBoards.push(board);
+        }
+      }
+
+      return newBoards;
+    });
+  };
+
+  //*********** end ********** */
   return (
     <div className="App">
       <header className="App-header">
@@ -105,9 +138,13 @@ function App() {
         <div className="top-container">
           {/* Do I need a form tag here to wrap BoardSelect, NewBoard and NewCard? */}
           {/** rename to boardSelect.js ??? */}
-          <BoardSelect boards={boards} onBoardChanged={setBoardId} />
+          <BoardSelect
+            boards={boards}
+            onBoardChanged={setBoardId}
+            currentTitleSelected={boardId}
+          />
           <NewBoard onNewBoard={createBoard} />
-          <NewCard />
+          <NewCard onNewCard={createCard} />
         </div>
         <div className="bottom-container">
           <CardBoard board={board} />
