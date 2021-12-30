@@ -37,13 +37,13 @@ function App() {
       title: "Test Board M",
       cards: [
         {
-          card_id: 1,
+          card_id: 3,
           likes_count: 0,
           message: "M Here's my first card",
           board_id: 2,
         },
         {
-          card_id: 2,
+          card_id: 4,
           likes_count: 0,
           message: "M Here's my second card",
           board_id: 2,
@@ -71,9 +71,16 @@ function App() {
   // find the board whose ID matches boardId
   const board = boards.filter((b) => b.board_id === boardId)[0];
   let maxBoardId = 0;
+  let maxCardId = 0;
   for (let i = 0; i < boards.length; i++) {
-    if (boards[i].board_id > maxBoardId) {
-      maxBoardId = boards[i].board_id;
+    const board = boards[i];
+    if (board.board_id > maxBoardId) {
+      maxBoardId = board.board_id;
+    }
+    for (let j = 0; j < board.cards.length; j++) {
+      if (board.cards[j].card_id > maxCardId) {
+        maxCardId = board.cards[j].card_id;
+      }
     }
   }
 
@@ -98,7 +105,8 @@ function App() {
   //********Adding new card to the current board *******
   const createCard = (message) => {
     const newCard = {
-      card_id: 0, // TODO: need to generate a card ID
+      // TODO: use new ID from API here rather than this hack.
+      card_id: ++maxCardId,
       message: message,
       likes_count: 0,
       board_id: boardId,
