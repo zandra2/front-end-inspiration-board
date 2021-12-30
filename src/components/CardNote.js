@@ -6,9 +6,12 @@ import PropTypes from "prop-types";
 const CardNote = (props) => {
   const { card } = props;
 
-  const [likesCount, setLikesCount] = useState(0);
-  const increaseLikes = () => {
-    setLikesCount(likesCount + 1);
+  const addLike = () => {
+    // STUB
+  };
+
+  const deleteCard = () => {
+    // STUB
   };
 
   return (
@@ -18,13 +21,15 @@ const CardNote = (props) => {
       </div>
       <div className="card-footer">
         <div className="heart">
-          <span>{likesCount}</span>
+          <span>{card.likes_count}</span>
           <span>🖤</span>
         </div>
-        <button onClick={increaseLikes} className="card-input">
+        <button onClick={addLike} className="card-input">
           +1
         </button>
-        <button className="card-input">Delete</button>
+        <button onClick={deleteCard} className="card-input">
+          Delete
+        </button>
       </div>
     </section>
   );
