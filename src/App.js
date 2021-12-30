@@ -52,7 +52,7 @@ function App() {
 
   // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
-  const [boardId, setBoardId] = useState(1); // the index of the current board in the boards array
+  const [activeBoardId, setActiveBoardId] = useState(1); // the index of the current board in the boards array
 
   // this runs when react attempts to render this component
   // useEffect(() => {
@@ -66,8 +66,8 @@ function App() {
   //     });
   // }, []);
 
-  // find the board whose ID matches boardId
-  const board = boards.filter((b) => b.board_id === boardId)[0];
+  // find the board whose ID matches activeBoardId
+  const activeBoard = boards.filter((b) => b.board_id === activeBoardId)[0];
 
   // HACK: since we're not connected to a back end yet, we need to generate
   // new IDs for boards and cards manually. Figure out the current max board
@@ -102,7 +102,7 @@ function App() {
       cards: [],
     };
     setBoards((boards) => [...boards, newBoard]);
-    setBoardId(newBoard.board_id);
+    setActiveBoardId(newBoard.board_id);
   }
 
   //********Adding new card to the current board *******
@@ -112,7 +112,7 @@ function App() {
       card_id: ++maxCardId,
       message: message,
       likes_count: 0,
-      board_id: boardId,
+      board_id: activeBoardId,
     };
 
     setBoards((boards) => {
@@ -121,7 +121,7 @@ function App() {
       for (let i = 0; i < boards.length; i++) {
         const board = boards[i];
         // is the current board the active one?
-        if (board.board_id === boardId) {
+        if (board.board_id === activeBoardId) {
           // If this is the board we're adding the new card to, then carefully
           // copy that board into a new object so we can add the new card
           // without modifying existing state.
@@ -142,7 +142,7 @@ function App() {
   const deleteCard = (deletedCardId) => {
     setBoards((boards) =>
       boards.map((board) => {
-        if (board.board_id !== boardId) {
+        if (board.board_id !== activeBoardId) {
           return board;
         }
 
@@ -158,7 +158,7 @@ function App() {
   const addLike = (addLikeCardId) => {
     setBoards((boards) =>
       boards.map((board) => {
-        if (board.board_id !== boardId) {
+        if (board.board_id !== activeBoardId) {
           return board;
         }
 
@@ -189,15 +189,15 @@ function App() {
         <div className="top-container">
           <BoardSelect
             boards={boards}
-            onBoardChanged={setBoardId}
-            currentTitleSelected={boardId}
+            onBoardChanged={setActiveBoardId}
+            currentTitleSelected={activeBoardId}
           />
           <NewBoard onNewBoard={createBoard} />
           <NewCard onNewCard={createCard} />
         </div>
         <div className="bottom-container">
           <CardBoard
-            board={board}
+            board={activeBoard}
             onDeleteCard={deleteCard}
             onAddLike={addLike}
           />
