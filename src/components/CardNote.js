@@ -21,19 +21,10 @@ const CardNote = (props) => {
           <span>{likesCount}</span>
           <span>🖤</span>
         </div>
-        {/**
-        <form className="card-form">
-          <input
-            onClick={increaseLikes}
-            className="card-input"
-            type="text"
-            value="+1"
-          />
-        </form>
-        <form className="card-form">
-          <input className="card-input" type="text" value="Delete" />
-        </form>
-        */}
+        <button onClick={increaseLikes} className="card-input">
+          +1
+        </button>
+        <button className="card-input">Delete</button>
       </div>
     </section>
   );
