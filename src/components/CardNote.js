@@ -2,10 +2,10 @@ import React from "react";
 import "./CardNote.css";
 
 const CardNote = (props) => {
-  const { card, onDeleteCard } = props;
+  const { card, onDeleteCard, onAddLike } = props;
 
   const addLike = () => {
-    // STUB
+    onAddLike(card.card_id);
   };
 
   const deleteCard = () => {

@@ -150,6 +150,30 @@ function App() {
     );
   };
 
+  const addLike = (addLikeCardId) => {
+    setBoards((boards) =>
+      boards.map((board) => {
+        if (board.board_id !== boardId) {
+          return board;
+        }
+
+        const newBoard = { ...board };
+        newBoard.cards = [...newBoard.cards].map((card) => {
+          if (card.card_id === addLikeCardId) {
+            const newCard = {
+              ...card,
+              likes_count: card.likes_count + 1,
+            };
+            return newCard;
+          } else {
+            return card;
+          }
+        });
+        return newBoard;
+      })
+    );
+  };
+
   //*********** end ********** */
   return (
     <div className="App">
@@ -169,7 +193,11 @@ function App() {
           <NewCard onNewCard={createCard} />
         </div>
         <div className="bottom-container">
-          <CardBoard board={board} onDeleteCard={deleteCard} />
+          <CardBoard
+            board={board}
+            onDeleteCard={deleteCard}
+            onAddLike={addLike}
+          />
         </div>
         {/* <form>
           <div className="top-container"> */}

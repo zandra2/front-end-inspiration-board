@@ -3,7 +3,7 @@ import "./CardBoard.css";
 import CardNote from "./CardNote";
 
 const CardBoard = (props) => {
-  const { board, onDeleteCard } = props;
+  const { board, onDeleteCard, onAddLike } = props;
 
   return (
     <div>
@@ -14,6 +14,7 @@ const CardBoard = (props) => {
             key={card.card_id}
             card={card}
             onDeleteCard={onDeleteCard}
+            onAddLike={onAddLike}
           />
         );
       })}
