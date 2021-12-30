@@ -2,9 +2,7 @@ import "./App.css";
 import BoardSelect from "./components/BoardSelect";
 import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
-import CardTitle from "./components/CardTitle";
 import CardBoard from "./components/CardBoard";
-import CardNote from "./components/CardNote";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
