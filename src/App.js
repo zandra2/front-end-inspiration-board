@@ -182,8 +182,6 @@ function App() {
       </header>
       <main>
         <div className="top-container">
-          {/* Do I need a form tag here to wrap BoardSelect, NewBoard and NewCard? */}
-          {/** rename to boardSelect.js ??? */}
           <BoardSelect
             boards={boards}
             onBoardChanged={setBoardId}
@@ -199,18 +197,6 @@ function App() {
             onAddLike={addLike}
           />
         </div>
-        {/* <form>
-          <div className="top-container"> */}
-        {/* does board needs a form tag to send http request? */}
-        {/* <Board />
-            <NewBoard />
-            <NewCard />
-          </div>
-          <CardTitle />
-          <div className="bottom-container">
-            <CardNote />
-          </div> */}
-        {/* </form> */}
       </main>
     </div>
   );
