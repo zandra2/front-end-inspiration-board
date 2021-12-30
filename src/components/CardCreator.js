@@ -1,11 +1,10 @@
 import React from "react";
-import "./NewCard.css";
+import "./CardCreator.css";
 import { useState } from "react";
-import CardNote from "./CardNote";
 
 // import PropTypes from "prop-types";
 
-const NewCard = (props) => {
+const CardCreator = (props) => {
   const [message, setMessage] = useState("");
   const { onNewCard } = props;
 
@@ -56,4 +55,4 @@ const NewCard = (props) => {
   );
 };
 
-export default NewCard;
+export default CardCreator;

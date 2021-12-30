@@ -1,7 +1,7 @@
 import "./App.css";
 import BoardSelector from "./components/BoardSelector";
 import BoardCreator from "./components/BoardCreator";
-import NewCard from "./components/NewCard";
+import CardCreator from "./components/CardCreator";
 import IdeaBoard from "./components/IdeaBoard";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -194,7 +194,7 @@ function App() {
             currentTitleSelected={activeBoardId}
           />
           <BoardCreator onNewBoard={createBoard} />
-          <NewCard onNewCard={createCard} />
+          <CardCreator onNewCard={createCard} />
         </div>
         <div className="bottom-container">
           <IdeaBoard
