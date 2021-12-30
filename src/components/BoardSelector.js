@@ -1,10 +1,10 @@
 import React from "react";
-import "./BoardSelect.css";
+import "./BoardSelector.css";
 // import PropTypes from "prop-types";
 
 // destructuring can looking: const Board = (props) => { const { boards } = props; or const Board = ({ boards, color }). Do 2nd destructoring when there's more than one props are being pass down but otherwise this all depends on how the team want to do it.
 // TODO: Check out Controlled vs Uncontrolled Components
-const BoardSelect = (props) => {
+const BoardSelector = (props) => {
   const { boards, onBoardChanged } = props;
 
   // Event handler to convert the string value of the selected option
@@ -41,4 +41,4 @@ const BoardSelect = (props) => {
   );
 };
 
-export default BoardSelect;
+export default BoardSelector;

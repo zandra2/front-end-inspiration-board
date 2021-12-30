@@ -1,5 +1,5 @@
 import "./App.css";
-import BoardSelect from "./components/BoardSelect";
+import BoardSelector from "./components/BoardSelector";
 import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
 import CardBoard from "./components/CardBoard";
@@ -188,7 +188,7 @@ function App() {
       </header>
       <main>
         <div className="top-container">
-          <BoardSelect
+          <BoardSelector
             boards={boards}
             onBoardChanged={setActiveBoardId}
             currentTitleSelected={activeBoardId}
