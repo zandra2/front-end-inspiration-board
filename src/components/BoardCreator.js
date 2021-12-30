@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./NewBoard.css";
+import "./BoardCreator.css";
 // import PropTypes from "prop-types";
 
-const NewBoard = (props) => {
+const BoardCreator = (props) => {
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("");
   const [visible, setVisible] = useState(true);
@@ -118,4 +118,4 @@ const NewBoard = (props) => {
   );
 };
 
-export default NewBoard;
+export default BoardCreator;
