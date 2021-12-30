@@ -1,8 +1,8 @@
 import React from "react";
-import "./CardBoard.css";
+import "./IdeaBoard.css";
 import CardNote from "./CardNote";
 
-const CardBoard = (props) => {
+const IdeaBoard = (props) => {
   const { board, onDeleteCard, onAddLike } = props;
 
   return (
@@ -21,4 +21,4 @@ const CardBoard = (props) => {
     </div>
   );
 };
-export default CardBoard;
+export default IdeaBoard;

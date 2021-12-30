@@ -2,7 +2,7 @@ import "./App.css";
 import BoardSelector from "./components/BoardSelector";
 import NewBoard from "./components/NewBoard";
 import NewCard from "./components/NewCard";
-import CardBoard from "./components/CardBoard";
+import IdeaBoard from "./components/IdeaBoard";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -197,7 +197,7 @@ function App() {
           <NewCard onNewCard={createCard} />
         </div>
         <div className="bottom-container">
-          <CardBoard
+          <IdeaBoard
             board={activeBoard}
             onDeleteCard={deleteCard}
             onAddLike={addLike}
