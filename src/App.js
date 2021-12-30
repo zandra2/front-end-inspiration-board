@@ -134,6 +134,22 @@ function App() {
     });
   };
 
+  const deleteCard = (deletedCardId) => {
+    setBoards((boards) =>
+      boards.map((board) => {
+        if (board.board_id !== boardId) {
+          return board;
+        }
+
+        const newBoard = { ...board };
+        newBoard.cards = [...board.cards].filter(
+          (card) => card.card_id !== deletedCardId
+        );
+        return newBoard;
+      })
+    );
+  };
+
   //*********** end ********** */
   return (
     <div className="App">
@@ -153,7 +169,7 @@ function App() {
           <NewCard onNewCard={createCard} />
         </div>
         <div className="bottom-container">
-          <CardBoard board={board} />
+          <CardBoard board={board} onDeleteCard={deleteCard} />
         </div>
         {/* <form>
           <div className="top-container"> */}

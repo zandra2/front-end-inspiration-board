@@ -4,14 +4,14 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const CardNote = (props) => {
-  const { card } = props;
+  const { card, onDeleteCard } = props;
 
   const addLike = () => {
     // STUB
   };
 
   const deleteCard = () => {
-    // STUB
+    onDeleteCard(card.card_id);
   };
 
   return (
