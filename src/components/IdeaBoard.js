@@ -1,6 +1,6 @@
 import React from "react";
 import "./IdeaBoard.css";
-import CardNote from "./CardNote";
+import IdeaCard from "./IdeaCard";
 
 const IdeaBoard = (props) => {
   const { board, onDeleteCard, onAddLike } = props;
@@ -10,7 +10,7 @@ const IdeaBoard = (props) => {
       <div className="card-board">Cards for {board.title}</div>
       {board.cards.map((card) => {
         return (
-          <CardNote
+          <IdeaCard
             key={card.card_id}
             card={card}
             onDeleteCard={onDeleteCard}

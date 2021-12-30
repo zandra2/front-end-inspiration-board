@@ -1,7 +1,7 @@
 import React from "react";
-import "./CardNote.css";
+import "./IdeaCard.css";
 
-const CardNote = (props) => {
+const IdeaCard = (props) => {
   const { card, onDeleteCard, onAddLike } = props;
 
   const addLike = () => {
@@ -33,4 +33,4 @@ const CardNote = (props) => {
   );
 };
 
-export default CardNote;
+export default IdeaCard;
