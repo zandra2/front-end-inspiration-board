@@ -6,24 +6,31 @@ import CardNote from "./CardNote";
 // import PropTypes from "prop-types";
 
 const NewCard = (props) => {
-  //******My mess******* */
   const [message, setMessage] = useState("");
   const { onNewCard } = props;
 
   // Respond to the button click after the user has typed the message
   const handleSubmitMessage = (event) => {
     event.preventDefault();
-    onNewCard(message);
-    setMessage("");
+
+    // take the current message, trim leading and trailing whitespace
+    const trimmed = message.trim();
+
+    // if there is anything left after trimming, then use that message
+    // to create a new card.
+    if (trimmed.length > 0) {
+      onNewCard(message);
+      setMessage("");
+    } else {
+      // Maybe show a message here to indicate bad user input?
+      // alert("Message empty, no new card created.")
+    }
   };
 
   // keep track of the state as the user types
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
-
-  //problem-needs to pass this to card note child
-  // ****** end my mess here******* */
 
   return (
     // added form tag. Not sure if I need it?
