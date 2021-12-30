@@ -52,6 +52,7 @@ function App() {
 
   // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
+  // TODO: It is likely not safe to assume there is at least one board.
   const [activeBoardId, setActiveBoardId] = useState(1); // the index of the current board in the boards array
 
   // this runs when react attempts to render this component
