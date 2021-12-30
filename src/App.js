@@ -156,6 +156,14 @@ function App() {
     );
   };
 
+  const deleteBoard = (deletedBoardId) => {
+    setBoards((boards) =>
+      boards.filter(function( board ) {
+          return board.board_id !== deletedBoardId;
+      })
+    );
+  };
+
   const addLike = (addLikeCardId) => {
     setBoards((boards) =>
       boards.map((board) => {
@@ -201,6 +209,7 @@ function App() {
             board={activeBoard}
             onDeleteCard={deleteCard}
             onAddLike={addLike}
+            onDeleteBoard={deleteBoard}
           />
         </div>
       </main>

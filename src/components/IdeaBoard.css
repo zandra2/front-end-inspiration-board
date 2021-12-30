@@ -4,3 +4,14 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.delete-button {
+  background-color: #db1111;
+  border: #db1111;
+  color: white;
+  text-align: center;
+  padding: 20px 44px;
+  font-size: 24px;
+  /* box-shadow: none; */
+  width: 165px;
+}
