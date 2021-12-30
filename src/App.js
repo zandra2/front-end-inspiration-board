@@ -68,6 +68,11 @@ function App() {
 
   // find the board whose ID matches boardId
   const board = boards.filter((b) => b.board_id === boardId)[0];
+
+  // HACK: since we're not connected to a back end yet, we need to generate
+  // new IDs for boards and cards manually. Figure out the current max board
+  // and card IDs so we can increment here, duplicating the DB's autoincrement
+  // behavior. We should be able to remove this code later.
   let maxBoardId = 0;
   let maxCardId = 0;
   for (let i = 0; i < boards.length; i++) {
