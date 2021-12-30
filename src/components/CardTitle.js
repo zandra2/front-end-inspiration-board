@@ -1,6 +1,5 @@
 import React from "react";
 import "./CardTitle.css";
-import PropTypes from "prop-types";
 
 const CardTitle = () => {
   return (

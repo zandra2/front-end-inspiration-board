@@ -1,6 +1,5 @@
 import React from "react";
 import "./CardBoard.css";
-import PropTypes from "prop-types";
 import CardNote from "./CardNote";
 
 const CardBoard = (props) => {

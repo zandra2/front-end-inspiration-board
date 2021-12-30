@@ -1,7 +1,5 @@
 import React from "react";
 import "./CardNote.css";
-import { useState } from "react";
-import PropTypes from "prop-types";
 
 const CardNote = (props) => {
   const { card, onDeleteCard } = props;
