@@ -56,16 +56,16 @@ function App() {
   const [activeBoardId, setActiveBoardId] = useState(1); // the index of the current board in the boards array
 
   // this runs when react attempts to render this component
-  // useEffect(() => {
-  //   axios
-  //     .get("https://inspiration-board-api.herokuapp.com/boards")
-  //     .then((data) => {
-  //       setBoards(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("opps!", err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("https://inspiration-board-api.herokuapp.com/boards")
+      .then((data) => {
+        setBoards(data);
+      })
+      .catch((err) => {
+        console.log("opps!", err);
+      });
+  }, []);
 
   // find the board whose ID matches activeBoardId
   const activeBoard = boards.filter((b) => b.board_id === activeBoardId)[0];
