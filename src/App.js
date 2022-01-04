@@ -61,13 +61,8 @@ function App() {
   useEffect(() => {
     axios
       .get("https://inspiration-board-api.herokuapp.com/boards")
-<<<<<<< HEAD
-      .then((data) => {
-        setBoards(data);
-=======
       .then((response) => {
         setBoards(response.data);
->>>>>>> 8a20f5568ccbfe378e559fd7e8160f88adae3232
       })
       .catch((err) => {
         console.log("opps!", err);
