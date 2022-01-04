@@ -59,8 +59,13 @@ function App() {
   useEffect(() => {
     axios
       .get("https://inspiration-board-api.herokuapp.com/boards")
+<<<<<<< HEAD
       .then((data) => {
         setBoards(data);
+=======
+      .then((response) => {
+        setBoards(response.data);
+>>>>>>> 8a20f5568ccbfe378e559fd7e8160f88adae3232
       })
       .catch((err) => {
         console.log("opps!", err);
@@ -76,18 +81,20 @@ function App() {
   // behavior. We should be able to remove this code later.
   let maxBoardId = 0;
   let maxCardId = 0;
-  for (let i = 0; i < boards.length; i++) {
-    const board = boards[i];
-    if (board.board_id > maxBoardId) {
-      maxBoardId = board.board_id;
-    }
-    for (let j = 0; j < board.cards.length; j++) {
-      if (board.cards[j].card_id > maxCardId) {
-        maxCardId = board.cards[j].card_id;
+  if (boards.length < 1){
+    for (let i = 0; i < boards.length; i++) {
+      const board = boards[i];
+      if (board.board_id > maxBoardId) {
+        maxBoardId = board.board_id;
+      }
+      for (let j = 0; j < board.cards.length; j++) {
+        if (board.cards[j].card_id > maxCardId) {
+          maxCardId = board.cards[j].card_id;
+        }
       }
     }
   }
-
+  
   // TODO: Call API to create new board. This API will need to return
   // the ID of the new board. Do not use useEffect here because there is
   // no effect yet. The state won't change until AFTER we call setBoards
@@ -204,8 +211,8 @@ function App() {
           <BoardCreator onNewBoard={createBoard} />
           <CardCreator onNewCard={createCard} />
         </div>
-        <div className="bottom-container">
-          <IdeaBoard
+        <div className="bottom-container"> 
+           <IdeaBoard
             board={activeBoard}
             onDeleteCard={deleteCard}
             onAddLike={addLike}

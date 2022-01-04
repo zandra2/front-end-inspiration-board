@@ -41,8 +41,12 @@ p {
 .card-footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  /* the aligns likes and delete button with likes count heart  */
+  align-items: center; 
 }
+
+
 
 .card-para {
   /* setting width size somehow affects right margin. */
