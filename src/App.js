@@ -3,7 +3,7 @@ import BoardSelector from "./components/BoardSelector";
 import BoardCreator from "./components/BoardCreator";
 import CardCreator from "./components/CardCreator";
 import IdeaBoard from "./components/IdeaBoard";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -59,13 +59,8 @@ function App() {
   useEffect(() => {
     axios
       .get("https://inspiration-board-api.herokuapp.com/boards")
-<<<<<<< HEAD
-      .then((data) => {
-        setBoards(data);
-=======
       .then((response) => {
         setBoards(response.data);
->>>>>>> 8a20f5568ccbfe378e559fd7e8160f88adae3232
       })
       .catch((err) => {
         console.log("opps!", err);
