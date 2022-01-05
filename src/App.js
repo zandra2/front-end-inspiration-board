@@ -9,46 +9,48 @@ import axios from "axios";
 function App() {
   // TODO:  rename data to boards (a list of all board objects...)
   // TODO:  Save for later - create a setBoards function that will update this list.  That data will come from your backend.
-  const [boards, setBoards] = useState([
-    {
-      board_id: 1,
-      owner: "Zandra",
-      title: "Test Board Z",
-      cards: [
-        {
-          card_id: 1,
-          likes_count: 0,
-          message: "Z Here's my first card",
-          board_id: 1,
-        },
-        {
-          card_id: 2,
-          likes_count: 0,
-          message: "Z Here's my second card",
-          board_id: 1,
-        },
-      ],
-    },
-    {
-      board_id: 2,
-      owner: "Mike",
-      title: "Test Board M",
-      cards: [
-        {
-          card_id: 3,
-          likes_count: 0,
-          message: "M Here's my first card",
-          board_id: 2,
-        },
-        {
-          card_id: 4,
-          likes_count: 0,
-          message: "M Here's my second card",
-          board_id: 2,
-        },
-      ],
-    },
-  ]);
+  const [boards, setBoards] = useState([]);
+
+  //   ([
+  //   {
+  //     board_id: 1,
+  //     owner: "Zandra",
+  //     title: "Test Board Z",
+  //     cards: [
+  //       {
+  //         card_id: 1,
+  //         likes_count: 0,
+  //         message: "Z Here's my first card",
+  //         board_id: 1,
+  //       },
+  //       {
+  //         card_id: 2,
+  //         likes_count: 0,
+  //         message: "Z Here's my second card",
+  //         board_id: 1,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     board_id: 2,
+  //     owner: "Mike",
+  //     title: "Test Board M",
+  //     cards: [
+  //       {
+  //         card_id: 3,
+  //         likes_count: 0,
+  //         message: "M Here's my first card",
+  //         board_id: 2,
+  //       },
+  //       {
+  //         card_id: 4,
+  //         likes_count: 0,
+  //         message: "M Here's my second card",
+  //         board_id: 2,
+  //       },
+  //     ],
+  //   },
+  // ]);
 
   // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
@@ -67,6 +69,21 @@ function App() {
       });
   }, []);
 
+  // posting a new title onto board
+  useEffect(() => {
+    axios
+      .post("https://inspiration-board-api.herokuapp.com/boards", {
+        title: boards.title,
+        owner: boards.owner,
+      })
+      .then((response) => {
+        console.log(response);
+        setBoards(response.data);
+      })
+      .catch((err) => {
+        console.log("opps!", err);
+      });
+  }, [boards]);
   // find the board whose ID matches activeBoardId
   const activeBoard = boards.filter((b) => b.board_id === activeBoardId)[0];
 
@@ -76,7 +93,7 @@ function App() {
   // behavior. We should be able to remove this code later.
   let maxBoardId = 0;
   let maxCardId = 0;
-  if (boards.length < 1){
+  if (boards.length < 1) {
     for (let i = 0; i < boards.length; i++) {
       const board = boards[i];
       if (board.board_id > maxBoardId) {
@@ -89,7 +106,7 @@ function App() {
       }
     }
   }
-  
+
   // TODO: Call API to create new board. This API will need to return
   // the ID of the new board. Do not use useEffect here because there is
   // no effect yet. The state won't change until AFTER we call setBoards
@@ -158,13 +175,14 @@ function App() {
     );
   };
 
-  const deleteBoard = (deletedBoardId) => {
-    setBoards((boards) =>
-      boards.filter(function( board ) {
-          return board.board_id !== deletedBoardId;
-      })
-    );
-  };
+  // ***** TODO: delete board button to work **********
+  // const deleteBoard = (deletedBoardId) => {
+  //   setBoards((boards) =>
+  //     boards.filter(function( board ) {
+  //         return board.board_id !== deletedBoardId;
+  //     })
+  //   );
+  // };
 
   const addLike = (addLikeCardId) => {
     setBoards((boards) =>
@@ -206,12 +224,13 @@ function App() {
           <BoardCreator onNewBoard={createBoard} />
           <CardCreator onNewCard={createCard} />
         </div>
-        <div className="bottom-container"> 
-           <IdeaBoard
+        <div className="bottom-container">
+          <IdeaBoard
             board={activeBoard}
             onDeleteCard={deleteCard}
             onAddLike={addLike}
-            onDeleteBoard={deleteBoard}
+            // **** Delete Board button temporiarly removed *******
+            // onDeleteBoard={deleteBoard}
           />
         </div>
       </main>
