@@ -70,20 +70,22 @@ function App() {
   }, []);
 
   // posting a new title onto board
-  useEffect(() => {
-    axios
-      .post("https://inspiration-board-api.herokuapp.com/boards", {
-        title: boards.title,
-        owner: boards.owner,
-      })
-      .then((response) => {
-        console.log(response);
-        setBoards(response.data);
-      })
-      .catch((err) => {
-        console.log("opps!", err);
-      });
-  }, [boards]);
+  // useEffect(() => {
+  // console.log(boards);
+  // axios
+  //   .post("https://inspiration-board-api.herokuapp.com/boards", {
+  //     title: boards.title,
+  //     owner: boards.owner,
+  //   })
+  //   .then((response) => {
+  //     console.log(response);
+  //     setBoards(response.data);
+  //   })
+  //   .catch((err) => {
+  //     console.log("opps!", err);
+  //   });
+  // }, [boards]);
+
   // find the board whose ID matches activeBoardId
   const activeBoard = boards.filter((b) => b.board_id === activeBoardId)[0];
 
@@ -113,16 +115,30 @@ function App() {
   // below. Alternate solution: do this here AND have a useEffect which
   // calls the back end. There are some advantages and disadvantages to
   // both.
+
   function createBoard(title, owner) {
-    const newBoard = {
-      // TODO: use new ID from API here rather than this hack.
-      board_id: ++maxBoardId,
-      owner: owner,
-      title: title,
-      cards: [],
-    };
-    setBoards((boards) => [...boards, newBoard]);
-    setActiveBoardId(newBoard.board_id);
+    // const newBoard = {
+    //   // TODO: use new ID from API here rather than this hack.
+    //   board_id: ++maxBoardId,
+    //   owner: owner,
+    //   title: title,
+    //   cards: [],
+    // };
+    // setBoards((boards) => [...boards, newBoard]);
+    // setActiveBoardId(newBoard.board_id);
+
+    axios
+      .post("https://inspiration-board-api.herokuapp.com/boards", {
+        title: title,
+        owner: owner,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setBoards((boards) => [...boards, response.data]);
+      })
+      .catch((err) => {
+        console.log("opps!", err);
+      });
   }
 
   //********Adding new card to the current board *******

@@ -29,9 +29,9 @@ const BoardSelector = (props) => {
         {/* default setting for sector */}
         {/* <option value="">Select Title</option>
         use map to iterate the boards and return multiple return option objects */}
-        {boards.map((board) => {
+        {boards.map((board, i) => {
           return (
-            <option key={board.board_id} value={board.board_id}>
+            <option key={i} value={board.board_id}>
               {board.title}
             </option>
           );
