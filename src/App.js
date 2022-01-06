@@ -11,46 +11,8 @@ function App() {
   // TODO:  Save for later - create a setBoards function that will update this list.  That data will come from your backend.
   const [boards, setBoards] = useState([]);
 
-  //   ([
-  //   {
-  //     board_id: 1,
-  //     owner: "Zandra",
-  //     title: "Test Board Z",
-  //     cards: [
-  //       {
-  //         card_id: 1,
-  //         likes_count: 0,
-  //         message: "Z Here's my first card",
-  //         board_id: 1,
-  //       },
-  //       {
-  //         card_id: 2,
-  //         likes_count: 0,
-  //         message: "Z Here's my second card",
-  //         board_id: 1,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     board_id: 2,
-  //     owner: "Mike",
-  //     title: "Test Board M",
-  //     cards: [
-  //       {
-  //         card_id: 3,
-  //         likes_count: 0,
-  //         message: "M Here's my first card",
-  //         board_id: 2,
-  //       },
-  //       {
-  //         card_id: 4,
-  //         likes_count: 0,
-  //         message: "M Here's my second card",
-  //         board_id: 2,
-  //       },
-  //     ],
-  //   },
-  // ]);
+ 
+  
 
   // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component

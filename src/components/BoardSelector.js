@@ -31,7 +31,7 @@ const BoardSelector = (props) => {
         use map to iterate the boards and return multiple return option objects */}
         {boards.map((board, i) => {
           return (
-            <option key={i} value={board.board_id}>
+            <option key={i} value={board.id}>
               {board.title}
             </option>
           );
