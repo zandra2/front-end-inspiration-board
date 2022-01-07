@@ -10,9 +10,11 @@ function App() {
   // TODO:  rename data to boards (a list of all board objects...)
   // TODO:  Save for later - create a setBoards function that will update this list.  That data will come from your backend.
   const [boards, setBoards] = useState([]);
+  const [storeCardId, setStoreCardId] = useState({}); 
 
- 
-  
+  // storage of all cards associated to a board id
+
+
 
   // TODO: pass setBoard as a prop down to boardSelect.js and fire when the select dropdown list changes
   // TODO: board is now a single board object which you can pass down as a prop to the CardBoard.js component
@@ -55,21 +57,21 @@ function App() {
   // new IDs for boards and cards manually. Figure out the current max board
   // and card IDs so we can increment here, duplicating the DB's autoincrement
   // behavior. We should be able to remove this code later.
-  let maxBoardId = 0;
-  let maxCardId = 0;
-  if (boards.length < 1) {
-    for (let i = 0; i < boards.length; i++) {
-      const board = boards[i];
-      if (board.board_id > maxBoardId) {
-        maxBoardId = board.board_id;
-      }
-      for (let j = 0; j < board.cards.length; j++) {
-        if (board.cards[j].card_id > maxCardId) {
-          maxCardId = board.cards[j].card_id;
-        }
-      }
-    }
-  }
+  // let maxBoardId = 0;
+  // let maxCardId = 0;
+  // if (boards.length < 1) {
+  //   for (let i = 0; i < boards.length; i++) {
+  //     const board = boards[i];
+  //     if (board.board_id > maxBoardId) {
+  //       maxBoardId = board.board_id;
+  //     }
+  //     for (let j = 0; j < board.cards.length; j++) {
+  //       if (board.cards[j].card_id > maxCardId) {
+  //         maxCardId = board.cards[j].card_id;
+  //       }
+  //     }
+  //   }
+  // }
 
   // TODO: Call API to create new board. This API will need to return
   // the ID of the new board. Do not use useEffect here because there is
@@ -105,13 +107,68 @@ function App() {
 
   //********Adding new card to the current board *******
   const createCard = (message) => {
-    const newCard = {
-      // TODO: use new ID from API here rather than this hack.
-      card_id: ++maxCardId,
-      message: message,
-      likes_count: 0,
-      board_id: activeBoardId,
+    const newCard = {...storeCardId};
+    axios
+      .post(`https://inspiration-board-api.herokuapp.com/boards/${boards.board_id}/cards`, [{
+        // card_id: card_id,
+        message: message,
+        // likes_count: 0,
+        board_id: activeBoardId,
+      },
+        ])
+
+        .then((response) => {
+          if (!storeCardId[boards.board_id]) {
+            storeCardId[boards.board_id] = [];
+          }
+        storeCardId[boards.board_id].push({
+            card_id: response.data.id,
+            message: message.message,
+            likes_count: 0,
+          });
+          setStoreCardId(newCard);
+        });
     };
+        
+
+    // const addCardInstance = (newCard) => {
+    //   const newCardsByBoardId = { ...cardsByBoardId };
+  
+    //   axios
+    //     .post("https://backend-awesome-inspir-board.herokuapp.com/cards", [
+    //       {
+    //         message: newCard.message,
+    //         board_id: board.board_id,
+    //       },
+    //     ])
+  
+    //     .then((response) => {
+    //       if (!newCardsByBoardId[board.board_id]) {
+    //         newCardsByBoardId[board.board_id] = [];
+    //       }
+  
+    //       newCardsByBoardId[board.board_id].push({
+    //         card_id: response.data.id,
+    //         message: newCard.message,
+    //         likes_count: 0,
+    //       });
+    //       setCardsByBoardId(newCardsByBoardId);
+    //     });
+    // };
+
+    // //**** added this but I'm not sure if I'm doing it correctly *** */
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://inspiration-board-api.herokuapp.com/boards/${board.id}/cards`
+  //     ) //**** unsure http ****
+  //     .then((response) => {
+  //       board.id.setBoards(response.data); //***I'm not sure if this correct****
+  //     })
+  //     .catch((err) => {
+  //       console.log("opps!", err);
+  //     });
+  // }, [board]);
 
     setBoards((boards) => {
       const newBoards = [];
